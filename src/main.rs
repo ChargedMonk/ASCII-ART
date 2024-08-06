@@ -9,7 +9,7 @@ fn main() {
     for k in 3..args.len() {
         let mut img = image::open(&args[k]).unwrap();
         img = DynamicImage::from(resize(&img, (&args[1]).parse::<u32>().unwrap(), (&args[2]).parse::<u32>().unwrap(), FilterType::Nearest));
-        println!("Image dimensions: {:#?}", img.dimensions());
+        println!("Image dimensions: {:#?}, {:#?}", img.dimensions().0, img.dimensions().1);
         img = DynamicImage::from(grayscale(&img));
         let img = img.as_mut_luma8().unwrap();
         let (width, height) = img.dimensions();
